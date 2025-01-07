@@ -74,7 +74,7 @@
     <IncludePath>.\incl\;$(SolutionDir)\..\glm\;$(SolutionDir)\..\glm\ext\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\..\glm\;$(SolutionDir)\..\glm\ext\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>.\incl\;$(SolutionDir)\..\glm\;$(SolutionDir)\..\glm\ext\;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
