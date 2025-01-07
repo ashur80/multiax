@@ -15,8 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClInclude Include="incl\MultiaxCoreConfig.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="incl\WoehlerCurve.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="incl\mxtypes.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\WoehlerCurve.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>
