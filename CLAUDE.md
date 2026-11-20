@@ -9,6 +9,7 @@ with constant and variable amplitudes. It implements the method **Multiax-Invari
 - `multiax/` – application / driver (`src/main.cpp`), solution file `multiax/multiax.sln`.
 - `glm/` – third-party math library (vendored). Do not modify.
 - `docs/` – method documentation; `docs/sources/` – original literature.
+- `notebooks/` – Python reference (package `mxpy`, Jupyter notebooks) recomputing Appendix D and Section 6.3; test oracle for the C++ code (`notebooks/results/*.csv`). Edit `notebooks/src/*.py`, then `python notebooks/build_notebooks.py --execute`. See `notebooks/README.md` for results and open questions.
 
 Build: Visual Studio / MSBuild via `multiax/multiax.sln` (C++20, uses `<concepts>`).
 

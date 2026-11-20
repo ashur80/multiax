@@ -1,0 +1,32 @@
+{
+  "_source": "Bolchoun 2018 (docs/sources/N-515832.pdf). Table/equation numbers refer to the dissertation.",
+  "woehler_normed_tab_3_8": {
+    "_comment": "Normed S-N curves, joint evaluation AZ31+AZ61, R=-1, M_t/F=28 Nm/kN for combined cases. L_k in kN (torsion in Nm).",
+    "ax":   {"k": 3.0, "L_k": 1.79, "N_k": 5.0e5, "T_L": 1.24},
+    "tors": {"k": 5.0, "L_k": 68.8, "N_k": 2.0e6, "T_L": 1.49},
+    "d0":   {"k": 4.0, "L_k": 1.58, "N_k": 6.0e5, "T_L": 1.37},
+    "d90":  {"k": 4.0, "L_k": 1.29, "N_k": 6.0e5, "T_L": 1.14},
+    "d45":  {"k": 4.0, "L_k": 1.58, "N_k": 6.0e5, "T_L": 1.24}
+  },
+  "gassner_normed_tab_3_11": {
+    "_comment": "Normed Gassner lines (3.5), joint evaluation, L_A at N_A = 2e6. L_A in kN (torsion in Nm).",
+    "N_A": 2.0e6,
+    "ax":   {"k": 4.0, "L_A": 3.10, "T_L": 1.32},
+    "tors": {"k": 6.0, "L_A": 157.0, "T_L": 1.27},
+    "d0":   {"k": 5.0, "L_A": 3.20, "T_L": 1.23},
+    "d90":  {"k": 5.0, "L_A": 2.35, "T_L": 1.21}
+  },
+  "transfer_factors_tab_6_1": {
+    "_comment": "Local stresses in the fictitious keyhole notch r_ref = 0.05 mm. Inner root notch is used for the assessment (Sec. 6.2.2).",
+    "inner": {"c_x": 61.0, "c_y": 19.9, "c_xy": 1.1},
+    "outer": {"c_x": 52.8, "c_y": 16.1, "c_xy": 0.991},
+    "_units": "c_x, c_y in MPa/kN; c_xy in MPa/Nm"
+  },
+  "k_star": 22.0,
+  "haibach_m": 2.0,
+  "D_zul": 0.5,
+  "L_TF": 50441,
+  "Mt_over_F": 28.0,
+  "scatter_band_reference_T": 1.29,
+  "_scatter_band_comment": "T = 1:1.29 as labelled in the S-N plots of Section 6.3 (Fig. 6.27, 6.45, 6.48)."
+}

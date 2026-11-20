@@ -436,3 +436,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
