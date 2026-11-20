@@ -5,17 +5,28 @@
 `multiax` is a C++ library for fatigue life assessment under multiaxial loading
 with constant and variable amplitudes. It implements the method **Multiax-Invariant**.
 
-- `multiax_core/` – core library (`incl/` headers, `src/` sources). DLL export macro: `MULTIAXCORE_DLL` → `MULTIAXCORE_DLLEXPORTS` (`MultiaxCoreConfig.hpp`).
-- `multiax/` – application / driver (`src/main.cpp`), solution file `multiax/multiax.sln`.
-- `glm/` – third-party math library (vendored). Do not modify.
+- `multiax_core/` – static core library: headers in `include/multiax/<module>/`, sources in `src/`.
+- `python/` – pybind11 bindings (`src/module.cpp` → `multiax._core`) and the Python package `python/multiax/`.
+- `tests/cpp/` (doctest), `tests/python/` (pytest), `bench/` (nanobench), `third_party/` (doctest, nanobench; vendored).
+- `glm/` – third-party math library (vendored, not used in milestone I). Do not modify.
+- `docs/learning/` – guided learning path (exercises E1–E6). **The exercises are implemented by the author**: don't write solutions for `TODO(E<n>)` code unless asked; provide scaffolding, tests, hints and reviews.
 - `docs/` – method documentation; `docs/sources/` – original literature.
 - `notebooks/` – Python reference (package `mxpy`, Jupyter notebooks) recomputing Appendix D and Section 6.3; test oracle for the C++ code (`notebooks/results/*.csv`). Edit `notebooks/src/*.py`, then `python notebooks/build_notebooks.py --execute`. See `notebooks/README.md` for results and open questions.
 
-Build: Visual Studio / MSBuild via `multiax/multiax.sln` (C++20, uses `<concepts>`).
+### Build
+- Toolchain: llvm-mingw (clang + libc++ + libomp, UCRT; winget `MartinStorsjo.LLVM-MinGW.UCRT`) + Ninja + CMake ≥ 3.24, C++20, OpenMP.
+  Toolchain file `cmake/llvm-mingw.cmake` locates clang (env `LLVM_MINGW_ROOT`, PATH, winget folder).
+- `powershell -File tools/check.ps1` builds everything (preset `release`), runs ctest, `pip install -e .` and pytest.
+- Presets: `cmake --preset release|debug`, `cmake --build --preset release`, `ctest --preset release`.
+- Python: `pip install --user --no-build-isolation -e .` (scikit-build-core; rebuilds on import). libc++ is linked statically;
+  `libomp.dll` is installed/copied next to the extension and test executables.
+- CUDA (later): nvcc 12.8 works with the VS2017 host compiler (C++17 only, tested on the RTX 2070).
 
 ### Code conventions (follow existing code)
 - Namespace `MultiaxCore`.
-- Numeric templates constrained with `std::floating_point TNum`; default alias uses `MXScalar` (`mxtypes.hpp`, `double` when `MX_USES_DOUBLES`), e.g. `using WoehlerCurve = WoehlerCurveT<MXScalar>;`.
+- Data-oriented design: SoA, free functions over `std::span`, no allocation in hot loops; kernels marked `MX_HOST_DEVICE` (future CUDA) use no std containers/exceptions.
+- The core is **specimen-independent**: no hard-coded specimen data; S-N curves, transfer matrices, load channels are inputs (plane stress sx, sy, txy at hot spots).
+- Numeric templates constrained with `std::floating_point TNum`; default alias uses `MXScalar` (`multiax/core/types.hpp`, `double` when `MX_USES_DOUBLES`), e.g. `using WoehlerCurve = WoehlerCurveT<MXScalar>;`.
 - Use `MXMachineEpsilon` for tolerance checks.
 - Input parameters prefixed `i_`; include guards `__Name_hpp__`.
 

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["scikit-build-core>=0.10", "pybind11>=2.13"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "multiax"
+version = "0.1.0"
+description = "Multiax-Invariant fatigue assessment (Bolchoun 2018) - data-oriented C++ core with Python interface"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "pandas>=2", "scipy>=1.11"]
+
+[tool.scikit-build]
+minimum-version = "0.10"
+build-dir = "build/{wheel_tag}"
+wheel.packages = ["python/multiax"]
+cmake.build-type = "Release"
+cmake.args = ["-G", "Ninja", "--toolchain", "cmake/llvm-mingw.cmake"]
+editable.mode = "redirect"
+editable.rebuild = true   # `import multiax` rebuilds changed C++ sources (needs --no-build-isolation)
+
+[tool.scikit-build.cmake.define]
+MULTIAX_BUILD_TESTS = "OFF"
+MULTIAX_BUILD_BENCH = "OFF"
+
+[tool.pytest.ini_options]
+testpaths = ["tests/python"]

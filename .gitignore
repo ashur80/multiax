@@ -441,3 +441,6 @@ FodyWeavers.xsd
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# CMake / scikit-build output
+build/
